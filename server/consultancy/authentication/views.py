@@ -4,9 +4,8 @@ import random
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
-from authentication.service import create_user, login_user
-from authentication.models import User
-from token import *
+from authentication.service import create_user, login_user, verify_user
+
 
 
 # Create your views here.
@@ -29,3 +28,12 @@ def login(request):
         return JsonResponse(res, status=200)
     else :
         return JsonResponse(res, status=res['status'])
+
+@api_view(['POST'])
+def verify(request):
+    email = request.data["email"]
+    otp = request.data["otp"]
+    res = verify_user(email=email, otp=otp)
+    if res['status'] == 200:
+        return JsonResponse(res, status=200)
+    else : return JsonResponse(res, status=res['status'])
