@@ -4,9 +4,9 @@ import random
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
+
+from authentication.protect import check_token
 from authentication.service import create_user, login_user, verify_user
-
-
 
 # Create your views here.
 @csrf_exempt
@@ -23,7 +23,6 @@ def login(request):
     email = request.data["email"]
     password = request.data["password"]
     res = login_user(email, password)
-    print(res)
     if res['status'] == 200:
         return JsonResponse(res, status=200)
     else :
@@ -37,3 +36,21 @@ def verify(request):
     if res['status'] == 200:
         return JsonResponse(res, status=200)
     else : return JsonResponse(res, status=res['status'])
+
+# @api_view(['GET'])
+def protect(request):
+    auth_header = request.headers.get('Authorization')
+    if auth_header and auth_header.startswith('Bearer'):
+        token = auth_header.split(' ')[1]
+        print("The Headers ==== ", token)
+        res = check_token(token)
+        if res['status'] == 200:
+            return JsonResponse(res, status=200)
+        else:
+            return JsonResponse(res, status=res['status'])
+
+    return JsonResponse({
+        'success' : False,
+        'status' : 404,
+        'message' : 'Header not found.'
+    })
