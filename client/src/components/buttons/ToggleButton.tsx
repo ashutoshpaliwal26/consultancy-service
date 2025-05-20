@@ -1,6 +1,5 @@
 import React, { useState, type ReactNode } from 'react'
 import RoundButton from './RoundButton';
-import { LeafIcon, User } from 'lucide-react';
 
 interface ToggleButtonProps {
     rightLabel: string,

@@ -1,4 +1,3 @@
-import React from 'react'
 import UserCard from '../../components/card/UserCard'
 
 const data = [

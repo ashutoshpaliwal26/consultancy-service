@@ -1,4 +1,3 @@
-import Button from '../components/buttons/Button'
 import SideBar from '../components/SideBar'
 import Dashboard from './dashboard/Dashboard'
 
