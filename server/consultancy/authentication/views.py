@@ -1,25 +1,32 @@
 import json
 import random
 
+from django.contrib.auth.hashers import make_password
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 
 from authentication.protect import check_token
-from authentication.service import create_user, login_user, verify_user
+from authentication.service import create_user, login_user, verify_user, get_all_user, get_user_by_email, \
+    update_user_data, change_password
+
 
 # Create your views here.
 @csrf_exempt
 @api_view(['POST'])
 def home(request):
     res = create_user(name=request.data["name"], email=request.data["email"], password=request.data["password"],
-                      otp=random.randint(1000, 9999))
+                      otp=random.randint(1000, 9999), role=request.data['role'])
     if res['status'] == 200:
         return JsonResponse(res, status=res['status'])
     return JsonResponse(res, status=res['status'])
 
 @api_view(['POST'])
 def login(request):
+    print({
+        'email' : request.data['email'],
+        'password' : request.data['password'],
+    })
     email = request.data["email"]
     password = request.data["password"]
     res = login_user(email, password)
@@ -54,3 +61,43 @@ def protect(request):
         'status' : 404,
         'message' : 'Header not found.'
     })
+
+def get_all_user_data(request):
+    get_all_user()
+    return JsonResponse({
+        'success' : True
+    })
+
+@api_view(['POST'])
+def get_user(request):
+    email = request.data["email"]
+    res = get_user_by_email(email=email)
+    if res['status'] == 200:
+        return JsonResponse(res, status=200)
+    else:
+        return JsonResponse(res, status=res['status'])
+
+@api_view(['POST'])
+def update_user(request):
+    name = request.data["name"]
+    email = request.data["email"]
+    phone = request.data["phone"]
+    company = request.data["company"]
+    bio = request.data['bio']
+    res = update_user_data(name=name, email=email, phone_no=phone, company=company, bio=bio)
+    if res['status'] == 200:
+        return JsonResponse(res, status=200)
+    else:
+        return JsonResponse(res, status=res['status'])
+
+
+@api_view(['POST'])
+def change_pass(request):
+    email = request.data['email']
+    current_password = request.data["current_password"]
+    new_password = request.data["new_password"]
+    res = change_password(email=email, current_password=current_password, new_password=new_password)
+    if res['status'] == 200:
+        return JsonResponse(res, status=200)
+    else:
+        return JsonResponse(res, status=res['status'])
