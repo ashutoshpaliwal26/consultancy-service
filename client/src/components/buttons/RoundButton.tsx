@@ -18,7 +18,6 @@ const RoundButton:React.FC<RoundButtonProps> = ({
     disable=false,
     tailwind,
 }) => {
-    console.log(disable);
   return (
     <button
         style={style}

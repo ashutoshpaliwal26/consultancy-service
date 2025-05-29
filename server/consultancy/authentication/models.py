@@ -1,6 +1,12 @@
 from importlib.metadata import requires
 
 from django.db import models
+from enum import Enum
+
+class UserRole(Enum):
+    ADMIN = "admin"
+    USER = "user"
+    CONSULTANT = "consultant"
 
 # Create your models here.
 class User(models.Model):
@@ -12,3 +18,11 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     otp = models.IntegerField()
     verified = models.BooleanField(default=False)
+    role = models.CharField(
+        max_length=20,
+        choices=[(role.value, role.name.title()) for role in UserRole],
+        default=UserRole.USER.value
+    )
+    bio = models.TextField(blank=True)
+    company = models.CharField(max_length=100, default="")
+    phone = models.CharField(max_length=100, default="")
