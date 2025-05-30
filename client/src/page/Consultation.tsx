@@ -1,27 +1,72 @@
-import React, { useState } from 'react';
-import { Calendar, Clock, User, FileText, Search, Filter, Plus } from 'lucide-react';
-import { consultations } from '../data/mockData';
-import { format } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import { Calendar, Clock, User, FileText, Search, Plus } from 'lucide-react';
 import ScheduleConsultation from '../components/form/ScheduleConsultation';
+import { apiClient } from '../config/api';
+import type { ConsultationsTypes } from '../types';
+import type { AxiosError } from 'axios';
+import type { ErrorResponse } from 'react-router-dom';
 
 const Consultations: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterStatus, setFilterStatus] = useState<'all' | 'upcoming' | 'completed' | 'cancelled'>('all');
     const [addConsultation, setAddConsultation] = useState<boolean>(false);
+    const [filteredConsultations, setFilterConsultations] = useState<ConsultationsTypes[]>([]);
 
-    const filteredConsultations = consultations.filter(consultation => {
-        const matchesSearch = consultation.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            consultation.type.toLowerCase().includes(searchTerm.toLowerCase());
+    const deleteConsultation = async(id : string) => {
+        try{
+            await apiClient.delete(`/consultations/delete/${id}`);
+            await fetchConsultations();
+        }catch(err){
+            console.error(err);
+        }
+    }
 
-        const matchesStatus = filterStatus === 'all' || consultation.status === filterStatus;
+    const fetchConsultations = async () => {
+        const user = JSON.parse(window.localStorage.getItem("user_data") as string);
+        const userId = user.id
+        try {
+            const res = await apiClient.get(`/consultations/${userId}`);
+            console.log(res.data);
+            if (res.data) {
+                setFilterConsultations(res.data.data);
+            }
+        } catch (err) {
+            const e = err as AxiosError<ErrorResponse, any>;
+            if(e.response?.data.status === 404){
+                setFilterConsultations([]);
+            }
+        }
+    }
 
-        return matchesSearch && matchesStatus;
-    });
+    const getTimeInMinuts = (initial_time: string, final_time: string) => {
+        const initT = new Date(initial_time);
+        const finalT = new Date(final_time);
+
+        const intiTMinute = initT.getTime();
+        const finalTMinute = finalT.getTime();
+
+        const miliSecond = finalTMinute - intiTMinute;
+
+        const minutes = miliSecond / 60000;
+        return minutes;
+    }
+
+    const getTime = (time: string) => {
+        return time.slice(11, 16);
+    }
+
+    const getDate = (date: string) => {
+        return date.slice(0, 10);
+    }
+
+    useEffect(() => {
+        fetchConsultations();
+    }, [])
 
     return (
         <div className="p-6 z-0 h-full w-full">
             {addConsultation && <div className="w-screen h-screen relative bg-sky-400 z-20">
-                <ScheduleConsultation addConsultation={addConsultation} setAddConsultation={setAddConsultation}/>
+                <ScheduleConsultation addConsultation={addConsultation} setAddConsultation={setAddConsultation} fetchConsultations={fetchConsultations}/>
             </div>}
             <div className="flex justify-between items-center mb-6">
                 <div>
@@ -73,10 +118,10 @@ const Consultations: React.FC = () => {
                                         <Calendar size={20} className="text-blue-600" />
                                     </div>
                                     <div className="ml-4">
-                                        <h3 className="text-lg font-medium text-gray-900">{consultation.type}</h3>
+                                        <h3 className="text-lg font-medium text-gray-900">{consultation.title}</h3>
                                         <div className="mt-1 flex items-center text-sm text-gray-500">
                                             <User size={16} className="mr-1" />
-                                            {consultation.clientName}
+                                            {consultation.created_by}
                                         </div>
                                     </div>
                                 </div>
@@ -84,24 +129,24 @@ const Consultations: React.FC = () => {
                                 <div className="flex flex-col items-end">
                                     <div className="flex items-center text-sm text-gray-900">
                                         <Clock size={16} className="mr-1" />
-                                        {consultation.time} ({consultation.duration} min)
+                                        {getTime(consultation.initial_time)} ({getTimeInMinuts(consultation.initial_time, consultation.final_time)} min)
                                     </div>
                                     <div className="mt-1 text-sm text-gray-500">
-                                        {consultation.date}
+                                        {getDate(consultation.on_date)}
                                     </div>
                                 </div>
                             </div>
 
-                            {consultation.notes && (
+                            {consultation.description && (
                                 <div className="mt-4 flex items-start text-sm text-gray-600">
                                     <FileText size={16} className="mr-2 mt-0.5 flex-shrink-0" />
-                                    {consultation.notes}
+                                    {consultation.description}
                                 </div>
                             )}
 
                             <div className="mt-4 flex items-center justify-between">
                                 <span className={`px-2 py-1 text-xs font-semibold rounded-full 
-                  ${consultation.status === 'upcoming' ? 'bg-blue-100 text-blue-800' :
+                                            ${consultation.status === 'upcoming' ? 'bg-blue-100 text-blue-800' :
                                         consultation.status === 'completed' ? 'bg-green-100 text-green-800' :
                                             'bg-red-100 text-red-800'}`}>
                                     {consultation.status.charAt(0).toUpperCase() + consultation.status.slice(1)}
@@ -111,11 +156,9 @@ const Consultations: React.FC = () => {
                                     <button className="px-3 py-1 bg-blue-50 hover:bg-blue-100 text-blue-700 text-sm font-medium rounded-md transition-colors">
                                         View Details
                                     </button>
-                                    {consultation.status === 'upcoming' && (
-                                        <button className="px-3 py-1 bg-gray-50 hover:bg-gray-100 text-gray-700 text-sm font-medium rounded-md transition-colors">
-                                            Reschedule
-                                        </button>
-                                    )}
+                                    <button onClick={() => {deleteConsultation(consultation.id)}} className="px-3 py-1 bg-gray-200 hover:bg-gray-100 cursor-pointer text-red-500 text-sm font-medium rounded-md transition-colors">
+                                        Delete
+                                    </button>
                                 </div>
                             </div>
                         </div>

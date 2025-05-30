@@ -2,7 +2,7 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 
-from consultations.service import create_consultation
+from consultations.service import create_consultation, get_consultation, delete_consultations
 
 
 # Create your views here.
@@ -21,3 +21,19 @@ def create(request):
     if res['status'] == 200:
         return JsonResponse(res, status=200)
     return JsonResponse(res, status=res['status'])
+
+@api_view(['GET'])
+def get_consultations_by_user_id(request, id):
+    res = get_consultation(id=id)
+    if res['status'] == 200:
+        return JsonResponse(res, status=200)
+    else:
+        return JsonResponse(res, status=res['status'])
+
+@api_view(['DELETE'])
+def delete_consultations_by_user_id(request, id):
+    res = delete_consultations(consultations_id=id)
+    if res['status'] == 200:
+        return JsonResponse(res, status=200)
+    else:
+        return JsonResponse(res, status=res['status'])

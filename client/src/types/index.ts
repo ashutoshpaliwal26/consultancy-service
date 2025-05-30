@@ -4,9 +4,9 @@ export interface UserType {
   email: string;
   role: 'admin' | 'super-admin';
   avatar?: string;
-  bio : string,
-  phone_no : string,
-  company : string
+  bio: string,
+  phone_no: string,
+  company: string
 }
 
 export interface Client {
@@ -56,17 +56,30 @@ export interface DashboardStats {
 }
 
 
-export interface AuthFormType{
-    name? : string,
-    email : string,
-    password : string,
-    confirmPassword? : string
+export interface AuthFormType {
+  name?: string,
+  email: string,
+  password: string,
+  confirmPassword?: string
 }
 
 export interface UserSettings {
-    name : string,
-    email : string,
-    phone : string,
-    company : string,
-    bio : string,
+  name: string,
+  email: string,
+  phone: string,
+  company: string,
+  bio: string,
+}
+
+export interface ConsultationsTypes {
+  id: string,
+  title: string,
+  description: string,
+  status : string,
+  initial_time: string,
+  final_time : string,
+  on_date : string,
+  created_at : string,
+  updated_at : string,
+  created_by : string
 }

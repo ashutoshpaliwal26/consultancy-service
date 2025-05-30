@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Bell, User, LogOut, Search, Menu } from 'lucide-react';
 import { notifications } from '../data/mockData';
-
+import Cookies from 'js-cookie';
 
 interface HeaderProps {
   toggleSidebar: () => void;
@@ -13,6 +13,12 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
   const [notification, setNotification] = useState([])
   
   const unreadNotifications = notifications.filter(n => !n.read);
+
+  const logout = () => {
+    Cookies.remove('uuid');
+    window.localStorage.clear();
+    location.pathname = "/";
+  }
 
   return (
     <header className="bg-white border-b border-gray-200 flex justify-between items-center px-4 py-3 sm:px-6 sticky top-0 z-10">
@@ -105,11 +111,11 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
               <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                 Your Profile
               </a>
-              <a href="#" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+              <a href="/settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                 Settings
               </a>
               <button 
-                onClick={() => {}}
+                onClick={logout}
                 className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
               >
                 <div className="flex items-center">
