@@ -23,10 +23,6 @@ def home(request):
 
 @api_view(['POST'])
 def login(request):
-    print({
-        'email' : request.data['email'],
-        'password' : request.data['password'],
-    })
     email = request.data["email"]
     password = request.data["password"]
     res = login_user(email, password)

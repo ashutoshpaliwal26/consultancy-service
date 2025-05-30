@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { Calendar, Clock, User, FileText, Search, Filter, Plus } from 'lucide-react';
 import { consultations } from '../data/mockData';
 import { format } from 'date-fns';
+import ScheduleConsultation from '../components/form/ScheduleConsultation';
 
 const Consultations: React.FC = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filterStatus, setFilterStatus] = useState<'all' | 'upcoming' | 'completed' | 'cancelled'>('all');
+    const [addConsultation, setAddConsultation] = useState<boolean>(false);
 
     const filteredConsultations = consultations.filter(consultation => {
         const matchesSearch = consultation.clientName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -17,13 +19,16 @@ const Consultations: React.FC = () => {
     });
 
     return (
-        <div className="p-6">
+        <div className="p-6 z-0 h-full w-full">
+            {addConsultation && <div className="w-screen h-screen relative bg-sky-400 z-20">
+                <ScheduleConsultation addConsultation={addConsultation} setAddConsultation={setAddConsultation}/>
+            </div>}
             <div className="flex justify-between items-center mb-6">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Consultations</h1>
                     <p className="text-sm text-gray-600 mt-1">Manage your consultation schedule</p>
                 </div>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-blue-700 transition-colors">
+                <button onClick={() => setAddConsultation(!addConsultation)} className="bg-blue-600 text-white px-4 py-2 rounded-md flex items-center hover:bg-blue-700 transition-colors">
                     <Plus size={20} className="mr-2" />
                     Schedule Consultation
                 </button>

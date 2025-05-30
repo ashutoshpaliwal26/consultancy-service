@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', jwt_views.TokenVerifyView.as_view(), name='token_verify'),
     path('api/', include('authentication.urls')),
+    path('api/consultations', include('consultations.urls')),
     path('admin/', admin.site.urls),
 
 ]
