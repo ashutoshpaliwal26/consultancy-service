@@ -214,3 +214,4 @@ export const dashboardStats: DashboardStats = {
   yearlyRevenue: 0,
   growthRate: 0
 };
+

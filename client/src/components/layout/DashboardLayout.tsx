@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 // import Header from './Header';
 import Sidebar from './Sidebar';
+import Header from '../Header';
 
 const DashboardLayout: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -11,7 +12,7 @@ const DashboardLayout: React.FC = () => {
       <Sidebar isOpen={sidebarOpen} closeSidebar={() => setSidebarOpen(false)} />
       
       <div className="md:pl-64">
-        {/* <Header toggleSidebar={() => setSidebarOpen(!sidebarOpen)} /> */}
+        <Header toggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
         
         <main className="p-4 sm:p-6">
           <Outlet />

@@ -47,7 +47,7 @@ INSTALLED_APPS= [
 ]
 
 EXTERNAL_APPS = [
-
+    'consultations',
     'authentication',
 ]
 
