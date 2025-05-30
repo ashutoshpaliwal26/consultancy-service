@@ -5,7 +5,7 @@ import { apiClient } from "../../config/api";
 interface FormType {
   title: string,
   description: string,
-  status: "upcomming" | "pending" | "complete",
+  status: "upcoming" | "pending" | "complete",
   initial_time: string,
   final_time: string,
   on_date: string,
@@ -15,15 +15,16 @@ interface FormType {
 interface ScheduleConsultationProps {
   addConsultation : boolean,
   setAddConsultation : (addConsultation : boolean) => void
+  fetchConsultations : () => void
 }
 
 
 
-const ScheduleConsultation:React.FC<ScheduleConsultationProps> = ({addConsultation, setAddConsultation}) => {
+const ScheduleConsultation:React.FC<ScheduleConsultationProps> = ({addConsultation, setAddConsultation, fetchConsultations}) => {
   const [formData, setFormData] = useState<FormType>({
     title: "",
     description: "",
-    status: "upcomming",
+    status: "upcoming",
     initial_time: "8:00",
     final_time: "",
     on_date: "",
@@ -45,7 +46,7 @@ const ScheduleConsultation:React.FC<ScheduleConsultationProps> = ({addConsultati
     console.log({userData})
     
     const email = userData.email;
-
+    
     const data : FormType = {
       title : formData.title,
       status : formData.status,
@@ -58,7 +59,8 @@ const ScheduleConsultation:React.FC<ScheduleConsultationProps> = ({addConsultati
     
     try{
       const res = await apiClient.post("/consultations/create", data); 
-      console.log(res.data);
+      fetchConsultations();
+      setAddConsultation(false);
       setLoading(false);
     }catch(err){
       console.error(err);
@@ -154,7 +156,7 @@ const ScheduleConsultation:React.FC<ScheduleConsultationProps> = ({addConsultati
         </div>
 
         <div className="w-full h-fit flex gap-2">
-          {["upcomming", "complete", "pending"].map((status) => (
+          {["upcoming", "complete", "pending"].map((status) => (
             <label
               key={status}
               htmlFor={status}
