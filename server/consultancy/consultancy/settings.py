@@ -49,6 +49,7 @@ INSTALLED_APPS= [
 EXTERNAL_APPS = [
     'consultations',
     'authentication',
+    'client'
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + EXTERNAL_APPS
