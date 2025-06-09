@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Plus, Search, Filter, MoreVertical, Mail, Phone, Trash, Edit } from 'lucide-react';
+import { Plus, Search, Mail, Phone, Trash, Edit } from 'lucide-react';
 import { clients } from '../data/mockData';
 
 const Clients: React.FC = () => {
