@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronDown, ShoppingBag } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
@@ -19,9 +20,9 @@ const Header = () => {
 
           </div>
           <nav className="hidden md:flex items-center space-x-6">
-            <a href="#" className="text-maroon hover:text-maroon-dark font-medium">
+            <Link to="/lunar-astro-blog" className="text-maroon hover:text-maroon-dark font-medium">
               Case Studies
-            </a>
+            </Link>
             <div className="relative">
               <button
                 className="flex items-center text-maroon hover:text-maroon-dark font-medium"

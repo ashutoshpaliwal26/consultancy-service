@@ -1,12 +1,22 @@
-import Header from '../components/Header';
-import Hero from '../components/Hero';
-import ContactButtons from '../components/ContactButtons';
-import TrustBadge from '../components/TrustBadge';
-import WhyChooseCard from '../components/WhyChooseCard';
-import TeacherCard from '../components/TeacherCard';
-import SelectionCard from '../components/SelectionCard';
-import ComparisonTable from '../components/ComparisionTable';
-import CaseStudiesSection from '../components/CaseStudiesSection';
+import Header from '../components/HomeComponents/Header';
+import Hero from '../components/HomeComponents/Hero';
+import ContactButtons from '../components/HomeComponents/ContactButtons';
+import TrustBadge from '../components/HomeComponents/TrustBadge';
+import WhyChooseCard from '../components/HomeComponents/WhyChooseCard';
+import TeacherCard from '../components/HomeComponents/TeacherCard';
+import SelectionCard from '../components/HomeComponents/SelectionCard';
+import ComparisonTable from '../components/HomeComponents/ComparisionTable';
+import CaseStudiesSection from '../components/HomeComponents/CaseStudiesSection';
+import YearlyHoroscope2025 from '../components/HomeComponents/YearlyHoroscorepe2025';
+import ConsultationSection from '../components/HomeComponents/ConsultationSection';
+import MeetAstrologersSection from '../components/HomeComponents/MeetAstrologersSection';
+import AstrologyVideosSection from '../components/HomeComponents/AstrologyVideosSection';
+import TrustSection from '../components/HomeComponents/TrustSection';
+import ChartPreparations from '../components/HomeComponents/ChartPreparations';
+import DifferencesSection from '../components/HomeComponents/DifferencesSection';
+import ContactSection from '../components/HomeComponents/ContactSection';
+import FAQSection from '../components/HomeComponents/FAQSection';
+import Footer from '../components/HomeComponents/Footer';
 
 function Home() {
   return (
@@ -22,6 +32,16 @@ function Home() {
       <SelectionCard/>
       <ComparisonTable/>
       <CaseStudiesSection/>
+      <YearlyHoroscope2025/>
+      <ConsultationSection/>
+      <MeetAstrologersSection/>
+      <AstrologyVideosSection/>
+      <TrustSection/>
+      <ChartPreparations/>
+      <DifferencesSection/>
+      <ContactSection/>
+      <FAQSection/>
+      <Footer/>
       <TrustBadge />
     </div>
   );
