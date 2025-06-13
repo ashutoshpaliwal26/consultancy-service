@@ -1,5 +1,6 @@
 import React from 'react';
 import { Instagram, Facebook, Twitter, Youtube, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer: React.FC = () => {
   return (
@@ -48,9 +49,9 @@ const Footer: React.FC = () => {
               <div className="mt-8">
                 <h4 className="text-lg font-bold text-gray-900 mb-4">SOCIAL CHANNELS</h4>
                 <div className="flex justify-center space-x-3">
-                  <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
+                  <Link to="https://www.instagram.com/nakshatrakripaa?igsh=aWVyOW16ZjU0MjZq" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors">
                     <Instagram className="w-5 h-5 text-white" />
-                  </a>
+                  </Link>
                   <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
                     <Facebook className="w-5 h-5 text-white" />
                   </a>

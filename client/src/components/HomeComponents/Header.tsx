@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ChevronDown, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -10,14 +10,15 @@ const Header = () => {
       <div className="container mx-auto">
         <div className="w-full flex items-center justify-between">
           <div className="flex items-center">
-            <div className="mr-8">
-              <img
-                src="https://images.pexels.com/photos/6044266/pexels-photo-6044266.jpeg"
-                alt="Lunar Astro"
-                className="h-16 w-16 rounded-full object-cover border-2 border-maroon"
-              />
-            </div>
-
+            <Link to={"/"}>
+              <div className="mr-8">
+                <img
+                  src="https://images.pexels.com/photos/6044266/pexels-photo-6044266.jpeg"
+                  alt="Lunar Astro"
+                  className="h-16 w-16 rounded-full object-cover border-2 border-maroon"
+                />
+              </div>
+            </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-6">
             <Link to="/lunar-astro-blog" className="text-maroon hover:text-maroon-dark font-medium">
@@ -38,18 +39,18 @@ const Header = () => {
                 </div>
               )}
             </div>
-            <a href="#" className="text-maroon hover:text-maroon-dark font-medium">
+            <Link to="/contact" className="text-maroon hover:text-maroon-dark font-medium">
               Contact Us
-            </a>
-            <a href="#" className="text-maroon hover:text-maroon-dark font-medium">
+            </Link>
+            <Link to="/review" className="text-maroon hover:text-maroon-dark font-medium">
               Reviews
-            </a>
-            <a href="#" className="text-maroon hover:text-maroon-dark font-medium">
+            </Link>
+            <Link to="/auth/login" className="text-maroon hover:text-maroon-dark font-medium">
               Login
-            </a>
-            <a href="#" className="text-maroon hover:text-maroon-dark font-medium">
+            </Link>
+            <Link to="/my-bookings" className="text-maroon hover:text-maroon-dark font-medium">
               My Bookings
-            </a>
+            </Link>
           </nav>
 
           <div className="relative">

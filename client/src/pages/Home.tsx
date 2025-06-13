@@ -1,4 +1,3 @@
-import Header from '../components/HomeComponents/Header';
 import Hero from '../components/HomeComponents/Hero';
 import ContactButtons from '../components/HomeComponents/ContactButtons';
 import TrustBadge from '../components/HomeComponents/TrustBadge';
@@ -16,17 +15,14 @@ import ChartPreparations from '../components/HomeComponents/ChartPreparations';
 import DifferencesSection from '../components/HomeComponents/DifferencesSection';
 import ContactSection from '../components/HomeComponents/ContactSection';
 import FAQSection from '../components/HomeComponents/FAQSection';
-import Footer from '../components/HomeComponents/Footer';
 
 function Home() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <Header />
       <div className="border-t border-maroon"></div>
       <main className="flex-grow">
         <Hero />
       </main>
-      <ContactButtons />
       <WhyChooseCard/>
       <TeacherCard/>
       <SelectionCard/>
@@ -41,7 +37,6 @@ function Home() {
       <DifferencesSection/>
       <ContactSection/>
       <FAQSection/>
-      <Footer/>
       <TrustBadge />
     </div>
   );
