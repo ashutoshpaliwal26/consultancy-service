@@ -35,7 +35,7 @@ const ConsultationSection: React.FC = () => {
                   {/* Title overlay */}
                   <div className="absolute top-4 left-4 text-white">
                     <h3 className="text-2xl md:text-3xl font-bold">GLIMPSE OF</h3>
-                    <h3 className="text-2xl md:text-3xl font-bold">LUNAR ASTRO</h3>
+                    <h3 className="text-2xl md:text-3xl font-bold">Nakshatra Kripaa</h3>
                     <h3 className="text-2xl md:text-3xl font-bold">CONSULTATION</h3>
                   </div>
                   
@@ -64,7 +64,7 @@ const ConsultationSection: React.FC = () => {
           <div className="order-1 md:order-2">
             <div className="text-gray-800 text-sm leading-relaxed space-y-2">
               <p>
-                At Lunar Astro, we have a proper Vedic Online astrology consultation 
+                At Nakshatra Kripaa, we have a proper Vedic Online astrology consultation 
                 system set for consultations. It starts with booking your astrology 
                 consultation services. Once confirmed, you get a Zoom meeting link to{' '}
                 <span className="font-semibold text-red-800">talk to our astrologers</span>{' '}

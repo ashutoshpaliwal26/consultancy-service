@@ -16,7 +16,7 @@ from authentication.service import create_user, login_user, verify_user, get_all
 @api_view(['POST'])
 def home(request):
     res = create_user(name=request.data["name"], email=request.data["email"], password=request.data["password"],
-                      otp=random.randint(1000, 9999), role=request.data['role'])
+                      otp=random.randint(1000, 9999), role=request.data['role'], place_of_birth=request.data["place_of_birth"], time_of_birth=request.data['time_of_birth'], address=request.data["address"])
     if res['status'] == 200:
         return JsonResponse(res, status=res['status'])
     return JsonResponse(res, status=res['status'])
@@ -80,7 +80,11 @@ def update_user(request):
     phone = request.data["phone"]
     company = request.data["company"]
     bio = request.data['bio']
-    res = update_user_data(name=name, email=email, phone_no=phone, company=company, bio=bio)
+    date_of_birth = request.data['date_of_birth']
+    address = request.data['address']
+    time_of_birth = request.data['time_of_birth']
+    place_of_birth = request.data['place_of_birth']
+    res = update_user_data(name=name, email=email, phone_no=phone, company=company, bio=bio, date_of_birth=date_of_birth, address=address, place_of_birth=place_of_birth, time_of_birth=time_of_birth)
     if res['status'] == 200:
         return JsonResponse(res, status=200)
     else:

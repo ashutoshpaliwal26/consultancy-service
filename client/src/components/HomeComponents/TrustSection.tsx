@@ -24,11 +24,11 @@ const TrustSection: React.FC = () => {
             <div>
               <h2 className="text-4xl font-bold text-gray-900 mb-6 leading-tight">
                 Why Trust{' '}
-                <span className="text-amber-600">Lunar Astro</span>?
+                <span className="text-amber-600">Nakshatra Kripaa</span>?
               </h2>
               
               <p className="text-lg text-gray-700 leading-relaxed">
-                At Lunar Astro we deeply care about our client's satisfaction. This is 
+                At Nakshatra Kripaa we deeply care about our client's satisfaction. This is 
                 the reason we handpick the{' '}
                 <span className="font-semibold text-gray-900">best astrologers online</span>{' '}
                 to help you with specific issues. In case you aren't satisfied with the 

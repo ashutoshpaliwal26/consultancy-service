@@ -19,7 +19,7 @@ const FAQSection: React.FC = () => {
 
   const faqItems: FAQItem[] = [
     {
-      question: "How to Book a Consultation with Lunar Astro?",
+      question: "How to Book a Consultation with Nakshatra Kripaa?",
       answer: (
         <div className="space-y-4">
           <p>To talk to our astrologers, follow these steps:</p>
@@ -71,7 +71,7 @@ const FAQSection: React.FC = () => {
           </div>
           
           <p className="mt-4 text-gray-700">
-            Once these steps are completed, your consultation with Lunar Astro will be confirmed. 
+            Once these steps are completed, your consultation with Nakshatra Kripaa will be confirmed. 
             Please note that you must be present at your chosen appointment time. No re-consultation 
             will be provided if you miss the consultation window.
           </p>

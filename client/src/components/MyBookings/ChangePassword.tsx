@@ -1,5 +1,6 @@
 import { Eye, EyeOff, Lock } from "lucide-react";
 import { useState } from "react";
+import { apiClient } from "../config/api";
 
 // Change Password Component
 const ChangePassword: React.FC = () => {
@@ -38,11 +39,30 @@ const ChangePassword: React.FC = () => {
     setIsLoading(true);
     
     // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      setFormData({ currentPassword: '', newPassword: '', confirmPassword: '' });
-      alert('Password changed successfully!');
-    }, 1000);
+    if(formData.newPassword === formData.confirmPassword){
+      const local_user = JSON.parse(localStorage.getItem("user") as string);
+      const email = local_user.email;
+      
+      try{
+        const res = await apiClient.post("/change_password", {
+          email : email,
+          current_password : formData.currentPassword,
+          new_password : formData.newPassword
+        })
+        if(res.status === 200){
+          setFormData({
+            confirmPassword : "",
+            newPassword : "",
+            currentPassword: ""
+          })
+          alert("Password Change Successfully");
+        }
+        setIsLoading(false);
+      }catch(err){
+        console.error(err);
+        setIsLoading(false);
+      }
+    }
   };
 
   return (

@@ -1,10 +1,10 @@
-import { Calendar, Search } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SideBar from "../components/MyBookings/SideBar";
-import MyBookingHeader from "../components/MyBookings/MyBookingHeader";
 import MyBookingsMain from "../components/MyBookings/MyBookingsMain";
 import EditAccount from "../components/MyBookings/EditAccount";
 import ChangePassword from "../components/MyBookings/ChangePassword";
+import { useNavigate } from "react-router-dom";
+import { useAuthenticate } from "../context/AuthContext";
 
 
 interface UserProfile {
@@ -12,7 +12,9 @@ interface UserProfile {
   email: string;
   phone: string;
   address: string;
-  dateOfBirth: string;
+  date_of_birth: string;
+  place_of_birth: string;
+  time_of_birth?: string;
 }
 
 // Types
@@ -30,13 +32,17 @@ type ActivePage = 'bookings' | 'edit-account' | 'change-password';
 const MyBookings: React.FC = () => {
   const [activePage, setActivePage] = useState<ActivePage>('bookings');
   const [userProfile, setUserProfile] = useState<UserProfile>({
-    name: 'ashutosh.paliwal',
-    email: 'ashutoshpaliwal25@gmail.com',
+    name: 'Ashutosh Paliwal',
+    email: 'ashutoshpaliwal@gmail.com',
     phone: '+91 9876543210',
     address: '123 Main Street, Jaipur, Rajasthan, India',
-    dateOfBirth: '1995-06-15'
+    date_of_birth: '1995-06-15',
+    place_of_birth: "Bhilwara",
+    time_of_birth : "00:00"
   });
   const [appointments] = useState<Appointment[]>([]);
+  const { isAuthorized } = useAuthenticate();
+  const navigate = useNavigate();
 
   const renderContent = () => {
     switch (activePage) {
@@ -51,13 +57,19 @@ const MyBookings: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (!isAuthorized) {
+      navigate("/auth/login")
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
-      <MyBookingHeader />
+      <hr />
       <div className="flex">
         <SideBar
-          activePage={activePage} 
-          onPageChange={setActivePage} 
+          activePage={activePage}
+          onPageChange={setActivePage}
           userProfile={userProfile}
         />
         <div className="flex-1 p-6">

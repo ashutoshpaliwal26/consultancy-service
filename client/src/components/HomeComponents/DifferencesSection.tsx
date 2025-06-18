@@ -6,11 +6,11 @@ const DifferencesSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-red-800 mb-6 leading-tight">
-            How Is Lunar Astro Different from Other Astrology Platforms?
+            How Is Nakshatra Kripaa Different from Other Astrology Platforms?
           </h2>
           
           <p className="text-lg text-gray-700 max-w-4xl mx-auto">
-            Lunar Astro stands apart from other astrology platforms in several ways.
+            Nakshatra Kripaa stands apart from other astrology platforms in several ways.
           </p>
         </div>
 
@@ -24,7 +24,7 @@ const DifferencesSection: React.FC = () => {
                   We care for our clients
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  At Lunar Astro, we ensure that no client leaves empty-handed. Our expert astrologers take the time to 
+                  At Nakshatra Kripaa, we ensure that no client leaves empty-handed. Our expert astrologers take the time to 
                   deeply analyze your birth chart for 2-3 days before your online astrology consultation. This approach prevents rushed predictions 
                   and guarantees accurate, high-quality insights that truly address your concerns.
                 </p>
@@ -41,7 +41,7 @@ const DifferencesSection: React.FC = () => {
                   Personalized process
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Instead of simply using a messaging platform where astrology consultations feel incomplete, Lunar Astro 
+                  Instead of simply using a messaging platform where astrology consultations feel incomplete, Nakshatra Kripaa 
                   provides a Zoom video call session where your chart is displayed, and an astrologer helps you understand the placements that are 
                   causing issues and gives suitable remedies.
                 </p>
@@ -58,10 +58,10 @@ const DifferencesSection: React.FC = () => {
                   Post-consultation support
                 </h3>
                 <p className="text-gray-700 leading-relaxed">
-                  Most astrology platforms conclude their service once the consultation ends—but not Lunar Astro. 
+                  Most astrology platforms conclude their service once the consultation ends—but not Nakshatra Kripaa. 
                   We you{' '}
                   <span className="text-red-600 font-semibold">consult with astrologers</span>{' '}
-                  at Lunar Astro, you get post-consultation email support, so if you have follow-up questions or 
+                  at Nakshatra Kripaa, you get post-consultation email support, so if you have follow-up questions or 
                   need further clarity, you can reach out to us for continued guidance.
                 </p>
               </div>
@@ -76,7 +76,7 @@ const DifferencesSection: React.FC = () => {
               </h3>
               <p className="text-gray-700 leading-relaxed">
                 Several astrology platforms assign random astrologers for birth chart analysis without judging their 
-                background. However, at Lunar Astro, we handpick our astrologer based on their quality of predictions, years of experience, and their 
+                background. However, at Nakshatra Kripaa, we handpick our astrologer based on their quality of predictions, years of experience, and their 
                 lifestyle. This means when you{' '}
                 <span className="font-semibold text-gray-900">talk to an astrologer</span>{' '}
                 you can rest assured that you are getting a properly trained astrologer only during 

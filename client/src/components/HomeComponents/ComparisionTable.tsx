@@ -40,7 +40,7 @@ const ComparisonTable: React.FC = () => {
               <h2 className="text-xl font-semibold">Consultation Process and Value Added Services</h2>
             </div>
             <div className="p-6 text-center border-l border-red-600 bg-red-600">
-              <h2 className="text-xl font-bold">Lunar Astro Consultation</h2>
+              <h2 className="text-xl font-bold">Nakshatra Kripaa Consultation</h2>
             </div>
             <div className="p-6 text-center border-l border-red-600">
               <h2 className="text-xl font-semibold">Other Astrology Platforms</h2>

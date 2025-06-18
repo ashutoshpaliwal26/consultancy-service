@@ -20,7 +20,7 @@ const TeacherCard = () => {
                         </p>
 
                         <p className="text-gray-800 text-lg leading-relaxed">
-                            Deepanshu sir as a mentor and guru, conduct training program for astrologer on regular basis. The approach of astrology consultation at Lunar Astro is dynamic.
+                            Deepanshu sir as a mentor and guru, conduct training program for astrologer on regular basis. The approach of astrology consultation at Nakshatra Kripaa is dynamic.
                         </p>
 
                         <p className="text-gray-800 text-lg leading-relaxed font-medium">

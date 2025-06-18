@@ -43,7 +43,6 @@ const ScheduleConsultation:React.FC<ScheduleConsultationProps> = ({addConsultati
     e.preventDefault();
     setLoading(true);
     const userData = JSON.parse(window.localStorage.getItem("user_data") as string);
-    console.log({userData})
     
     const email = userData.email;
     

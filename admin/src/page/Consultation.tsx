@@ -26,7 +26,6 @@ const Consultations: React.FC = () => {
         const userId = user.id
         try {
             const res = await apiClient.get(`/consultations/${userId}`);
-            console.log(res.data);
             if (res.data) {
                 setFilterConsultations(res.data.data);
             }

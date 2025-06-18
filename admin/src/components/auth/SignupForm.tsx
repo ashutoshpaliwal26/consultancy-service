@@ -38,7 +38,7 @@ const SignupForm: React.FC = () => {
             
         }
         setIsSubmitting(true);
-        const data = {...formData, role : "admin" };
+        const data = {...formData, role : "admin"};
         try {
             const response = await apiClient.post("/signup", data);
             if (response.status === 200) {
