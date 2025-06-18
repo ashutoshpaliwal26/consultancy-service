@@ -47,7 +47,7 @@ const AstrologyCaseStudies: React.FC = () => {
         </button>
       </div>
       <p className="text-center max-w-3xl mx-auto text-gray-700 mb-6">
-        Welcome to the Lunar Astro Blog section, where we share transformative
+        Welcome to the Nakshatra Kripaa Blog section, where we share transformative
         case studies and real-life examples from our clients’ astrological
         journeys. This section aims to provide you with a deeper understanding
         of how personalized astrological consultations can bring clarity and

@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
+import { apiClient } from '../config/api';
+import { AxiosError } from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuthenticate } from '../../context/AuthContext';
+
+type ErrorResponse = {
+  message: string,
+  [key: string]: any
+}
 
 const LoginForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -8,6 +17,10 @@ const LoginForm: React.FC = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [serverError, setServerError] = useState<string>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const navigate = useNavigate();
+  const {authenticate} = useAuthenticate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -17,6 +30,8 @@ const LoginForm: React.FC = () => {
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
+
+    setServerError("");
   };
 
   const validateForm = () => {
@@ -30,7 +45,7 @@ const LoginForm: React.FC = () => {
 
     if (!formData.password) {
       newErrors.password = 'Password is required';
-    } else if (formData.password.length < 6) {
+    } else if (formData.password.length < 4) {
       newErrors.password = 'Password must be at least 6 characters';
     }
 
@@ -38,11 +53,30 @@ const LoginForm: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log('Login form submitted:', formData);
-      // Handle login logic here
+      setLoading(true);
+      try{
+        const res = await apiClient.post("/login" , formData);
+        if(res.status === 200){
+          localStorage.setItem("user" , JSON.stringify(res.data.user))
+          localStorage.setItem("token" , JSON.stringify(res.data.token.access_token));
+        }
+        setFormData({
+          email : "",
+          password : ""
+        })
+        authenticate(true);
+        navigate("/");
+        setLoading(false);
+      }catch(err){
+        const error = err as AxiosError<ErrorResponse, any>;
+        if(error.response?.data){
+          setServerError(error.response.data.message);
+        }
+        setLoading(false);
+      }
     }
   };
 
@@ -51,6 +85,7 @@ const LoginForm: React.FC = () => {
       <div className="text-center mb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-2">Welcome back</h2>
         <p className="text-gray-600">Please sign in to your account</p>
+        {serverError && <p className='text-red-500 font-bold'>{serverError}</p>}
       </div>
 
       {/* Email Field */}
@@ -121,9 +156,9 @@ const LoginForm: React.FC = () => {
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full bg-red-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors duration-200"
+        className="w-full bg-red-500 text-white py-3 px-4 rounded-lg font-semibold hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:ring-offset-2 transition-colors duration-200" disabled={loading}
       >
-        Sign In
+        {loading ? "Loading..." : "Log In"}
       </button>
     </form>
   );

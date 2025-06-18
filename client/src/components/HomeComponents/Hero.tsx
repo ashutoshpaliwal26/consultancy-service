@@ -9,7 +9,7 @@ const Hero = () => {
         <div className="w-full md:w-full md:pl-8">
           <div className="px-8 py-8 flex flex-col items-center justify-center h-full">
             <h1 className="text-4xl md:text-5xl font-bold text-maroon text-center mb-4">
-              Talk to Astrologers
+              Talk to Nakshatra Kripaa
             </h1>
             <p className="text-xl md:text-2xl text-maroon text-center mb-8">
               Chat to get an Urgent Astrology Consultation

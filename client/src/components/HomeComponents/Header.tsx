@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronDown, ShoppingBag } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAuthenticate } from '../../context/AuthContext';
+import logoSrc from '../../../public/logo.avif';
 
 const Header = () => {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const { isAuthorized, user } = useAuthenticate();
+
 
   return (
     <header className="py-4 px-6 md:px-10 lg:px-16">
@@ -13,8 +17,8 @@ const Header = () => {
             <Link to={"/"}>
               <div className="mr-8">
                 <img
-                  src="https://images.pexels.com/photos/6044266/pexels-photo-6044266.jpeg"
-                  alt="Lunar Astro"
+                  src={logoSrc}
+                  alt="Nakshatra Kripaa"
                   className="h-16 w-16 rounded-full object-cover border-2 border-maroon"
                 />
               </div>
@@ -33,7 +37,7 @@ const Header = () => {
               </button>
               {isTermsOpen && (
                 <div className="absolute top-full left-0 mt-1 bg-white shadow-md rounded-md py-2 w-40 z-10">
-                  <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Term 1</a>
+                  <Link to="/about-us" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">About Us</Link>
                   <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Term 2</a>
                   <a href="#" className="block px-4 py-2 text-gray-800 hover:bg-gray-100">Term 3</a>
                 </div>
@@ -45,12 +49,17 @@ const Header = () => {
             <Link to="/review" className="text-maroon hover:text-maroon-dark font-medium">
               Reviews
             </Link>
-            <Link to="/auth/login" className="text-maroon hover:text-maroon-dark font-medium">
-              Login
+            {!isAuthorized ? <>
+              <Link to="/auth/login" className="text-maroon hover:text-maroon-dark font-medium">
+                Login
+              </Link>
+              <Link to="/my-bookings" className="text-maroon hover:text-maroon-dark font-medium">
+                My Bookings
+              </Link>
+            </> : <Link to="/my-bookings" className="text-maroon hover:text-maroon-dark font-medium">
+              {user.name}
             </Link>
-            <Link to="/my-bookings" className="text-maroon hover:text-maroon-dark font-medium">
-              My Bookings
-            </Link>
+            }
           </nav>
 
           <div className="relative">

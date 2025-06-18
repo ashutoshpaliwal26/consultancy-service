@@ -24,7 +24,7 @@ const SelectionCard = () => {
                     {/* Content Paragraphs */}
                     <div className="space-y-6">
                         <p className="text-gray-800 text-lg leading-relaxed">
-                            At Lunar Astro, we choose our astrologers very carefully. We check each candidate's knowledge, skills, and honesty. We conduct strict tests on astrology, and we interview them to see if they can help people well.
+                            At Nakshatra Kripaa, we choose our astrologers very carefully. We check each candidate's knowledge, skills, and honesty. We conduct strict tests on astrology, and we interview them to see if they can help people well.
                         </p>
 
                         <p className="text-gray-800 text-lg leading-relaxed">
@@ -39,7 +39,7 @@ const SelectionCard = () => {
                     {/* Call to Action Button */}
                     <div className="pt-6">
                         <button className="bg-red-900 hover:bg-red-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-lg">
-                            Check Eligibility To Become Astrologer At Lunar Astro
+                            Check Eligibility To Become Astrologer At Nakshatra Kripaa
                         </button>
                     </div>
                 </div>

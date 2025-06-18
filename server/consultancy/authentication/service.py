@@ -19,13 +19,12 @@ def check_user(email):
         return True
 
 
-def create_user(name, otp, email, password, role):
+def create_user(name, otp, email, password, role, place_of_birth, time_of_birth, address):
     if check_user(email):
         return {'message': 'User Already Exists Need to LogIn', 'success': False, 'status': 400}
     else:
         hash_password = make_password(str(password))
-
-        user = User(name=name, email=email, password=hash_password, otp=otp, role=role)
+        user = User(name=name, email=email, password=hash_password, otp=otp, role=role, place_of_birth=place_of_birth, time_of_birth=time_of_birth, address=address)
         send = verify_mail(email=user.email, otp=user.otp)
         print("The Mail Service Response : ", send['message'])
         user.save()
@@ -78,6 +77,14 @@ def get_all_user():
     serializer = ModelSerializer(users, many=True)
     return serializer.data
 
+def get_user_by_id(user_id):
+    try:
+        return User.objects.get(id=user_id)
+    except User.DoesNotExist:
+        return None
+
+
+
 def get_user_by_email(email):
     user = User.objects.get(email=email)
     if not user :
@@ -94,7 +101,7 @@ def get_user_by_email(email):
         'status' : 200
     }
 
-def update_user_data(name, email, bio, company, phone_no):
+def update_user_data(name, email, bio, company, phone_no, date_of_birth, address, place_of_birth, time_of_birth):
 
     user = User.objects.get(email=email)
     if not user:
@@ -104,11 +111,19 @@ def update_user_data(name, email, bio, company, phone_no):
             'message' : "User Not Found"
         }
 
+    if company == "" and bio=="": 
+        company = user.company
+        bio = user.bio
+    
     user.name = name
     user.email = email
     user.phone = phone_no
     user.company = company
     user.bio = bio
+    user.date_of_birth = date_of_birth
+    user.address = address
+    user.place_of_birth = place_of_birth
+    user.time_of_birth = time_of_birth
     user.save()
     serializer = ModelSerializer(user)
     return {

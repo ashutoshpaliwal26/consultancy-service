@@ -26,3 +26,7 @@ class User(models.Model):
     bio = models.TextField(blank=True)
     company = models.CharField(max_length=100, default="")
     phone = models.CharField(max_length=100, default="")
+    date_of_birth = models.DateTimeField(auto_now_add=True)
+    address = models.CharField(max_length=1000, default="")
+    place_of_birth = models.CharField(max_length=100, default="")
+    time_of_birth = models.TimeField(null=True , blank=True)

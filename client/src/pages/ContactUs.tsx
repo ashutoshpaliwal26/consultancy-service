@@ -20,7 +20,7 @@ const ContactUs = () => {
             <tbody>
               <tr className="border-b">
                 <td className="px-6 py-4 bg-gray-50 font-semibold text-gray-700 w-1/3">
-                  Lunar Astro Consultation:
+                  Nakshatra Kripaa Consultation:
                 </td>
                 <td className="px-6 py-4 text-blue-600">
                   +918650333201, +918650333211, +919258152002, +919258152003
@@ -28,7 +28,7 @@ const ContactUs = () => {
               </tr>
               <tr className="border-b">
                 <td className="px-6 py-4 bg-gray-50 font-semibold text-gray-700">
-                  Lunar Astro Course Queries:
+                  Nakshatra Kripaa Course Queries:
                 </td>
                 <td className="px-6 py-4 text-blue-600">
                   +918650333200, +919388847310, +918650333212, +919997247293, +919258152013
@@ -55,8 +55,8 @@ const ContactUs = () => {
                   Contact us Via Mail:
                 </td>
                 <td className="px-6 py-4">
-                  <a href="mailto:consult@lunarastro.com" className="text-blue-600 hover:text-blue-800">
-                    consult@lunarastro.com
+                  <a href="mailto:info@nakshatrakripaa.com" className="text-blue-600 hover:text-blue-800">
+                    info@nakshatrakripaa.com
                   </a>
                 </td>
               </tr>
@@ -85,7 +85,7 @@ const ContactUs = () => {
                   Company Name
                 </td>
                 <td className="px-6 py-4 font-semibold">
-                  LUNAR ASTRO VEDIC ACADEMY (OPC) PRIVATE LIMITED
+                  Nakshatra Kripaa VEDIC ACADEMY (OPC) PRIVATE LIMITED
                 </td>
               </tr>
               <tr className="border-b">
@@ -109,7 +109,7 @@ const ContactUs = () => {
                   Branch address
                 </td>
                 <td className="px-6 py-4">
-                  2nd Floor, Lunar Astro Vedic Academy, Cliff Tower, near{' '}
+                  2nd Floor, Nakshatra Kripaa Vedic Academy, Cliff Tower, near{' '}
                   <span className="text-blue-600">Anurag Chowk</span>, Vasant Vihar,{' '}
                   <span className="text-blue-600">Mohit Nagar</span>, Dehradun,{' '}
                   <span className="text-blue-600">Uttarakhand 248006</span>
@@ -128,11 +128,11 @@ const ContactUs = () => {
             <div className="bg-green-100 rounded-lg p-8 min-h-64 flex items-center justify-center relative">
               <div className="text-center">
                 <MapPin className="mx-auto h-12 w-12 text-green-600 mb-4" />
-                <h4 className="font-semibold text-gray-800 mb-2">Lunar Astro Vedic Academy</h4>
+                <h4 className="font-semibold text-gray-800 mb-2">Nakshatra Kripaa Vedic Academy</h4>
                 <p className="text-sm text-gray-600 mb-4">
-                  2nd Floor, Lunar Astro Vedic Academy, Cliff Tower<br />
-                  near Anurag Chowk, Vasant Vihar, Mohit Nagar<br />
-                  Dehradun, Uttarakhand 248006
+                  Connect with us for personalized guidance in <br/>
+                  Vedic astrology, numerology, and vastu shastra.<br/>
+                   We're here to help you find clarity and purpose.
                 </p>
                 <div className="flex items-center justify-center space-x-4 text-sm text-gray-600">
                   <div className="flex items-center">
@@ -141,11 +141,11 @@ const ContactUs = () => {
                   </div>
                   <div className="flex items-center">
                     <Mail className="h-4 w-4 mr-1" />
-                    <span>consult@lunarastro.com</span>
+                    <span>info@nakshatrakripaa.com</span>
                   </div>
                 </div>
               </div>
-              
+
               {/* Decorative elements to simulate map */}
               <div className="absolute top-4 right-4 bg-white p-2 rounded shadow-sm">
                 <Building className="h-5 w-5 text-gray-600" />
@@ -165,19 +165,19 @@ const ContactUs = () => {
             <p className="text-sm text-gray-600 mb-2">For immediate assistance</p>
             <p className="text-blue-600 font-semibold">+91 6375656356</p>
           </div>
-          
+
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
             <Mail className="mx-auto h-8 w-8 text-red-600 mb-3" />
             <h4 className="font-semibold text-gray-800 mb-2">Email Us</h4>
             <p className="text-sm text-gray-600 mb-2">Send us your queries</p>
-            <p className="text-blue-600 font-semibold">consult@lunarastro.com</p>
+            <p className="text-blue-600 font-semibold">info@nakshatrakripaa.com</p>
           </div>
-          
+
           <div className="bg-white rounded-lg shadow-md p-6 text-center">
             <MapPin className="mx-auto h-8 w-8 text-red-600 mb-3" />
             <h4 className="font-semibold text-gray-800 mb-2">Visit Us</h4>
             <p className="text-sm text-gray-600 mb-2">Come to our office</p>
-            <p className="text-blue-600 font-semibold">Dehradun, Uttarakhand</p>
+            <p className="text-blue-600 font-semibold">Bhilwara, Rajasthan</p>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { Calendar, LogOut, User } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Sidebar Component
 interface SidebarProps {
@@ -12,7 +13,7 @@ interface UserProfile {
   email: string;
   phone: string;
   address: string;
-  dateOfBirth: string;
+  date_of_birth: string;
 }
 
 type ActivePage = 'bookings' | 'edit-account' | 'change-password';
@@ -23,18 +24,17 @@ const SideBar: React.FC<SidebarProps> = ({ activePage, onPageChange, userProfile
     { key: 'edit-account' as ActivePage, icon: User, label: 'Edit Account' },
     { key: 'change-password' as ActivePage, icon: Lock, label: 'Change Password' },
   ];
-
   const handleLogout = () => {
-    console.log('Logging out...');
-    // Implement logout logic here
+    localStorage.clear();
+    location.href = "/";
   };
 
   return (
-    <div className="w-64 bg-white shadow-sm min-h-screen">
+    <div className="w-1/4 bg-white shadow-sm min-h-screen">
       <div className="p-6">
         {/* User Profile */}
-        <div className="flex items-center mb-6">
-          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+        <div className="flex items-center mb-6 gap-3">
+          <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
             <User className="w-6 h-6 text-blue-600" />
           </div>
           <div>

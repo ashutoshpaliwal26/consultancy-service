@@ -7,15 +7,15 @@ const MeetAstrologersSection: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-6">
-            Meet Our Astrologers – The Experts Behind Lunar Astro
+            Meet Our Astrologers – The Experts Behind Nakshatra Kripaa
           </h2>
         </div>
 
         {/* Main Content */}
         <div className="text-gray-800 text-lg leading-relaxed space-y-6">
           <p>
-            Not just anyone can be a Lunar Astro astrologer. Shri Deepanshu Giri Ji has personally selected every expert on our panel after rigorous 
-            training. We have certain guidelines that astrologers must meet to be qualified for Lunar Astro panel
+            Not just anyone can be a Nakshatra Kripaa astrologer. Shri Deepanshu Giri Ji has personally selected every expert on our panel after rigorous 
+            training. We have certain guidelines that astrologers must meet to be qualified for Nakshatra Kripaa panel
           </p>
 
           {/* Qualification List */}
@@ -31,7 +31,7 @@ const MeetAstrologersSection: React.FC = () => {
               </li>
               <li className="flex items-start">
                 <div className="w-2 h-2 bg-gray-800 rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                <span>Should have successfully passed all the assessments for the Lunar Astro panel and demonstrated the ability to predict accurately.</span>
+                <span>Should have successfully passed all the assessments for the Nakshatra Kripaa panel and demonstrated the ability to predict accurately.</span>
               </li>
             </ul>
           </div>

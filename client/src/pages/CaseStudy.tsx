@@ -1,45 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { apiClient } from "../components/config/api";
+import { Link } from "react-router-dom";
+import { useAuthenticate } from "../context/AuthContext";
+import Loading from "../components/Loading";
 
-const caseStudies = [
-  {
-    title: "5 Deep Emotional Struggles of the Moon in the Soul: A Story of Cosmic Challenges and Inner Turmoil",
-    date: "June 9, 2025",
-    comments: 3,
-    tag: "CASE STUDY",
-    image: "https://plus.unsplash.com/premium_vector-1697729804286-7dd6c1a04597?q=80&w=2140&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image URL
-    excerpt:
-      "\"Chandramah Manso Jatah\" — from the ancient Purusha Sukta, this profound verse tells us that",
-  },
-  {
-    title: "India’s Medical Milestones & Future of India’s Health",
-    date: "June 7, 2025",
-    comments: 2,
-    tag: "CASE STUDY",
-    image: "https://plus.unsplash.com/premium_vector-1697729804286-7dd6c1a04597?q=80&w=2140&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image URL
-    excerpt:
-      "The Lagna is the place where the consciousness takes the physical form and manifests in",
-  },
-  {
-    title: "Pending Karma – Cancer Rashi and Pisces Navamsa",
-    date: "June 7, 2025",
-    comments: 1,
-    tag: "CASE STUDY",
-    image: "https://plus.unsplash.com/premium_vector-1697729804286-7dd6c1a04597?q=80&w=2140&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image URL
-    excerpt:
-      "Yesterday I was reading \"Predict using Nakshatra\"...",
-  },
-  {
-    title: "Pending Karma – Cancer Rashi and Pisces Navamsa",
-    date: "June 7, 2025",
-    comments: 1,
-    tag: "CASE STUDY",
-    image: "https://plus.unsplash.com/premium_vector-1697729804286-7dd6c1a04597?q=80&w=2140&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", // Replace with actual image URL
-    excerpt:
-      "Yesterday I was reading \"Predict using Nakshatra\"...",
-  },
-];
+interface BlogTypes {
+  blog_id : string,
+  title : string,
+  date : string,
+  comments : number,
+  tag : string,
+  image : string,
+  excerpt : string
+}
+
 
 const CaseStudy: React.FC = () => {
+  const [caseStudies, setCaseStudies] = useState<BlogTypes[]>([]);
+  const { setLodingForPage , mainLoading} = useAuthenticate();
+
+  const fetch_blog_data = async() => {
+    setLodingForPage(true);
+    try{
+      const res = await apiClient.get("/blog/");
+      if(res.status === 200){
+        const data = res.data.data;
+        const blog_data:BlogTypes[] = [];
+        data.map((blog : any) => {
+            blog_data.push({
+              blog_id : blog.id,
+              title : blog.title,
+              comments : blog.comments.length,
+              date : blog.create_at,
+              excerpt : blog.description,
+              image : `http://localhost:8000${blog.image}`,
+              tag : "Blog"
+            })
+        })
+        setCaseStudies(blog_data);
+      }
+    }catch(err){
+      console.error(err);
+    }
+    setLodingForPage(false);
+  }
+
+  useEffect(()=>{
+    fetch_blog_data();
+  }, [])
+
+  if(mainLoading){
+    return <Loading/>
+  }
+
   return (
     <>
       <div className="p-4 max-w-6xl mx-auto">
@@ -57,7 +70,7 @@ const CaseStudy: React.FC = () => {
           </button>
         </div>
         <p className="text-center max-w-3xl mx-auto text-gray-700 mb-6">
-          Welcome to the Lunar Astro Blog section, where we share transformative
+          Welcome to the Nakshatra Kripaa Blog section, where we share transformative
           case studies and real-life examples from our clients’ astrological
           journeys. This section aims to provide you with a deeper understanding
           of how personalized astrological consultations can bring clarity and
@@ -85,12 +98,12 @@ const CaseStudy: React.FC = () => {
                   {study.title}
                 </h2>
                 <p className="text-sm text-gray-600 mb-2">{study.excerpt}</p>
-                <a
-                  href="#"
+                <Link
+                  to={`${study.blog_id}`}
                   className="text-blue-600 text-sm font-medium hover:underline"
                 >
                   READ MORE »
-                </a>
+                </Link>
                 <div className="text-xs text-gray-500 mt-2">
                   {study.date} • {study.comments} Comment
                   {study.comments > 1 ? "s" : ""}

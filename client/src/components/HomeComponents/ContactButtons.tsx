@@ -1,12 +1,13 @@
 import React from 'react';
 import { Phone, Mail, MessageCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const ContactButtons = () => {
   return (
     <div className="fixed right-4 top-1/2 transform -translate-y-1/2 flex flex-col space-y-4 z-10">
-      <button className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300">
+      <Link to={"whatsapp:+916375656356"} className="bg-green-500 hover:bg-green-600 text-white p-3 rounded-full shadow-lg transition-all duration-300">
         <Phone className="h-6 w-6" />
-      </button>
+      </Link>
       <button className="bg-red-500 hover:bg-red-600 text-white p-3 rounded-full shadow-lg transition-all duration-300">
         <Mail className="h-6 w-6" />
       </button>
