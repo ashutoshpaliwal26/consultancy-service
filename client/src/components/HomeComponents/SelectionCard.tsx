@@ -1,5 +1,12 @@
+import { Link, useNavigate } from "react-router-dom"
 
 const SelectionCard = () => {
+    const navigate = useNavigate();
+
+    const handelNavigation = () => {
+        navigate("/career")
+    }
+
     return (
         < div className="max-w-6xl mx-auto px-6 py-12" >
             <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -38,7 +45,7 @@ const SelectionCard = () => {
 
                     {/* Call to Action Button */}
                     <div className="pt-6">
-                        <button className="bg-red-900 hover:bg-red-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-lg">
+                        <button onClick={handelNavigation} className="bg-red-900 hover:bg-red-800 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors shadow-lg">
                             Check Eligibility To Become Astrologer At Nakshatra Kripaa
                         </button>
                     </div>

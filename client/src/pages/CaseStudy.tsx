@@ -1,56 +1,74 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { apiClient } from "../components/config/api";
 import { Link } from "react-router-dom";
 import { useAuthenticate } from "../context/AuthContext";
 import Loading from "../components/Loading";
 
 interface BlogTypes {
-  blog_id : string,
-  title : string,
-  date : string,
-  comments : number,
-  tag : string,
-  image : string,
-  excerpt : string
+  blog_id: string,
+  title: string,
+  date: string,
+  comments: number,
+  tag: string,
+  image: string,
+  excerpt: string
 }
 
 
 const CaseStudy: React.FC = () => {
   const [caseStudies, setCaseStudies] = useState<BlogTypes[]>([]);
-  const { setLodingForPage , mainLoading} = useAuthenticate();
+  const { setLodingForPage, mainLoading } = useAuthenticate();
+  const [query, setQuery] = useState<string>("");
+  const [search, setSearch] = useState<boolean>();
 
-  const fetch_blog_data = async() => {
+  const fetch_blog_data = async () => {
     setLodingForPage(true);
-    try{
+    try {
       const res = await apiClient.get("/blog/");
-      if(res.status === 200){
+      if (res.status === 200) {
         const data = res.data.data;
-        const blog_data:BlogTypes[] = [];
-        data.map((blog : any) => {
-            blog_data.push({
-              blog_id : blog.id,
-              title : blog.title,
-              comments : blog.comments.length,
-              date : blog.create_at,
-              excerpt : blog.description,
-              image : `http://localhost:8000${blog.image}`,
-              tag : "Blog"
-            })
+        const blog_data: BlogTypes[] = [];
+        data.map((blog: any) => {
+          blog_data.push({
+            blog_id: blog.id,
+            title: blog.title,
+            comments: blog.comments.length,
+            date: blog.create_at,
+            excerpt: blog.description,
+            image: `http://localhost:8000${blog.image}`,
+            tag: "Blog"
+          })
         })
         setCaseStudies(blog_data);
       }
-    }catch(err){
+    } catch (err) {
       console.error(err);
     }
     setLodingForPage(false);
   }
 
-  useEffect(()=>{
+  const searchBlog = () => {
+    if(query.length !== 0) {
+
+      const cs:BlogTypes[] = caseStudies;
+      let study:BlogTypes[] = [];
+      cs.map((blog)=>{
+        if(blog.title.startsWith(query)){
+          study.push(blog);
+        }
+      })
+      setCaseStudies(study);
+    }else{
+      fetch_blog_data();
+    }
+  }
+
+  useEffect(() => {
     fetch_blog_data();
   }, [])
 
-  if(mainLoading){
-    return <Loading/>
+  if (mainLoading) {
+    return <Loading />
   }
 
   return (
@@ -61,11 +79,13 @@ const CaseStudy: React.FC = () => {
         </h1>
         <div className="flex justify-center mb-6">
           <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
             type="text"
             placeholder="Search..."
             className="px-4 py-2 border shadow-sm rouded-l-md w-1/2"
           />
-          <button className="px-4 py-2 bg-gray-300 border border-l-0 rounded-r-md">
+          <button onClick={searchBlog} className="px-4 py-2 bg-gray-300 border border-l-0 rounded-r-md">
             🔍
           </button>
         </div>

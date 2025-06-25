@@ -13,6 +13,7 @@ import MyBookings from './pages/MyBookings';
 import AuthContext from './context/AuthContext';
 import BlogPost from './components/BlogPost';
 import AboutUs from './pages/AboutUs';
+import Carrer from './pages/Carrer';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path='/contact' element={<ContactUs />} />
             <Route path='/about-us' element={<AboutUs/>}/>
             <Route path='/review' element={<ReviewPage />} />
+            <Route path='/career' element={<Carrer/>} />
             <Route path='/auth' element={
               <AuthForm />
             }>
